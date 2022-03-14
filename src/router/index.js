@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../components/Home'
 import Album from '../components/Album'
 import Obtener from '../components/Obtener'
+import InformacionSerie from '../components/InformacionSerie'
 
 const routes = [
   {
@@ -18,6 +19,11 @@ const routes = [
     path: '/obtener-laminas',
     name: 'Obtener',
     component: Obtener
+  },
+  {
+    path: '/informacion-serie',
+    name: 'Informacion',
+    component: InformacionSerie
   }
 ]
 
