@@ -3,6 +3,7 @@ import Home from '../components/Home'
 import Album from '../components/Album'
 import Obtener from '../components/Obtener'
 import InformacionSerie from '../components/InformacionSerie'
+import Personajes from '../components/InformacionSerie/Personajes'
 
 const routes = [
   {
@@ -24,7 +25,12 @@ const routes = [
     path: '/informacion-serie',
     name: 'Informacion',
     component: InformacionSerie
-  }
+  },
+  {
+    path: '/personajes',
+    name: 'Personajes',
+    component: Personajes
+  },
 ]
 
 const router = createRouter({
