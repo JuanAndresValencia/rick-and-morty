@@ -4,11 +4,13 @@
       <h1>Sobre abierto</h1>
       <div class='get_cards_open_box'>
         <ul v-for='lamina in laminas' v-bind:key='lamina'>
-          <div class='get_cards_open_single' v-on:click='addLaminas(lamina)'>
-            <h1>Lamina {{lamina.id}}</h1>
-            <p>Nombre {{lamina.name}}</p>
-            <p v-if='lamina.gender'>Tipo: Personaje</p>
+          <div class='get_cards_open_single'>
+            <h1>Lamina {{lamina.data.id}}</h1>
+            <p>Nombre {{lamina.data.name}}</p>
+            <p v-if='lamina.data.gender'>Tipo: Personaje</p>
             <p v-else>Tipo: Episodio</p>
+            <button v-if='lamina.exists' >Descartar</button>
+            <button v-else v-on:click='addLaminas(lamina.data)'>Agregar al album</button>
           </div>
         </ul>
       </div>
@@ -92,7 +94,7 @@ export default {
       this.contador = 60
       this.blockCounter = false
     },
-    generarLaminas() {
+    async generarLaminas() {
       let randomPersonajes = []
       let randomEpisodio = Math.floor(Math.random() * (51 - 1) + 1)
       for (let i = 0; i < 4; i++) {
@@ -100,15 +102,22 @@ export default {
         randomPersonajes.push(value)
       }
 
-      this.generarPersonajes(randomPersonajes)
-      this.generarEpisodio(randomEpisodio)
+      await this.generarPersonajes(randomPersonajes)
+      await this.generarEpisodio(randomEpisodio)
       
     },
     generarPersonajes(data) {
       axios 
         .get(`https://rickandmortyapi.com/api/character/${data}`)
         .then(res => {
-          this.laminas = this.laminas.concat(res.data)
+          for (let i = 0; i < res.data.length; i++){
+            let result = {
+              data: res.data[i],
+              exists: this.buscarLamina(res.data[i])
+            }
+            console.log(result)
+            this.laminas = this.laminas.concat(result)
+          }
         })
         .catch(err => {
           console.log(err)
@@ -118,7 +127,13 @@ export default {
       axios
         .get(`https://rickandmortyapi.com/api/episode/${data}`)
         .then(res => {
-          this.laminas = this.laminas.concat(res.data)
+          console.log(res.data)
+          let result = {
+            data: res.data,
+            exists: this.buscarLamina(res.data)
+          }
+          this.laminas = this.laminas.concat(result)
+
         })
         .catch(err => {
           console.log(err)
@@ -138,6 +153,19 @@ export default {
     },
     eliminarLamina(lamina) {
       console.log(lamina)
+    },
+    buscarLamina(lamina) {
+      let miAlbum = JSON.parse(localStorage.getItem('album'))
+      if (miAlbum) {
+        let exists = miAlbum.find(lam => lam.name === lamina.name)
+        if (exists){
+          return true
+        } else {
+          return false
+        }
+      } else {
+        return false
+      } 
     }
   },
   created() {
