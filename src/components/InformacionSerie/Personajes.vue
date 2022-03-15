@@ -35,7 +35,6 @@ export default {
             axios
               .get(`https://rickandmortyapi.com/api/character/?page=${i}`)
               .then(res => {
-                console.log(res.data.results)
                 this.personajes = this.personajes.concat(res.data.results)
               })
               .catch(err => {
