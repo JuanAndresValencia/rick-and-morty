@@ -5,9 +5,11 @@
         <h1>Obtener Láminas</h1>
       </div>
     </router-link>
-    <div class='box_card'>
-      <h1>Mi Álbum</h1>
-    </div>
+    <router-link to='/album'>
+      <div class='box_card'>
+        <h1>Mi Álbum</h1>
+      </div>
+    </router-link>
     <router-link to='/informacion-serie'>
       <div class='box_card'>
         <h1>Información de la serie</h1>

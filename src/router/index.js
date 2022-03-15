@@ -4,6 +4,8 @@ import Album from '../components/Album'
 import Obtener from '../components/Obtener'
 import InformacionSerie from '../components/InformacionSerie'
 import Personajes from '../components/InformacionSerie/Personajes'
+import Personaje from '../components/Personaje'
+import Episodio from '../components/Episodio'
 
 const routes = [
   {
@@ -30,6 +32,18 @@ const routes = [
     path: '/personajes',
     name: 'Personajes',
     component: Personajes
+  },
+  {
+    path: '/personajes/:id',
+    name: 'Personaje',
+    props: true,
+    component: Personaje
+  },
+  {
+    path: '/episodios/:id',
+    name: 'Episodio',
+    props: true,
+    component: Episodio
   },
 ]
 
