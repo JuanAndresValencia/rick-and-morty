@@ -32,7 +32,6 @@ export default {
                 const data = res.data.results
                 for (let i = 0; i < data.length; i++){
                   const origin = data[i].origin.name
-                  console.log(data[i])
                   const findOrigin = this.origenes.find(orig => orig === origin)
                   if (findOrigin) {
                     console.log('exists')

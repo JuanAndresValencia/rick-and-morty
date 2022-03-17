@@ -33,7 +33,6 @@ export default {
         .get(`https://rickandmortyapi.com/api/location/${this.id}`)
         .then(res => {
           const data = res.data
-          console.log(data)
           this.name = data.name
 
           for (let i = 0; i < data.residents.length; i++) {
