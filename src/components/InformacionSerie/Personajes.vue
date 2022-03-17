@@ -63,6 +63,9 @@ export default {
   background-attachment: fixed;
   min-height: 100vh;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .personajes_box h1 {
@@ -74,11 +77,13 @@ export default {
   flex-wrap: wrap;
   padding: 20px;
   gap: 20px;
+  justify-content: center;
 }
 
 .single_box {
   background-color: white;
   padding: 20px;
+  border-radius: 5px;
   -webkit-box-shadow: -7px -5px 14px -14px rgba(0,0,0,0.75);
   -moz-box-shadow: -7px -5px 14px -14px rgba(0,0,0,0.75);
   box-shadow: -7px -5px 14px -14px rgba(0,0,0,0.75);

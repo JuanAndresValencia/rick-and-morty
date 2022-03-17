@@ -154,7 +154,7 @@ export default {
   grid-template-columns: repeat(5, 1fr);
   column-gap: 10px;
   row-gap: 20px;
-  padding: 50px;
+  padding: 20px;
 }
 
 @media screen and (max-width: 1000px) {
@@ -187,7 +187,7 @@ export default {
   justify-content: center;
   background-color: white;
   color: black;
-  min-width: 150px;
+  max-width: 170px;
   min-height: 250px;
   max-height: 350px;
   height: 95%;
@@ -195,6 +195,6 @@ export default {
 }
 
 .box_general_content img {
-  max-width: 100px;
+  max-width: 100px
 }
 </style>

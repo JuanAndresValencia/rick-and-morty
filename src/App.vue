@@ -26,6 +26,7 @@ export default {
   text-decoration: none;
   font-family: 'Nunito', sans-serif;
 }
+
 .container {
   width: 100%;
 }
