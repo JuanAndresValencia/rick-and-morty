@@ -85,8 +85,8 @@ export default {
           console.log(err)
         })
     },
-    obtenerEpisodios() {
-      axios 
+    async obtenerEpisodios() {
+      await axios 
         .get('https://rickandmortyapi.com/api/episode')
         .then(res => {
           const pages = res.data.info.pages
@@ -126,7 +126,7 @@ export default {
       }
     },
   },
-  created() {
+  mounted() {
     this.obtenerPersonajes()
     this.obtenerEpisodios()
   }
@@ -187,6 +187,7 @@ export default {
   justify-content: center;
   background-color: white;
   color: black;
+  min-width: 150px;
   max-width: 170px;
   min-height: 250px;
   max-height: 350px;

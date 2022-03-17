@@ -27,7 +27,7 @@ export default {
   },
   methods: {
     async getPersonajes() {
-      axios 
+      await axios 
         .get('https://rickandmortyapi.com/api/character')
         .then(res => {
           const pages = res.data.info.pages
@@ -48,7 +48,7 @@ export default {
         })
     }
   },
-  created() {
+  mounted() {
     this.getPersonajes()
   }
 }

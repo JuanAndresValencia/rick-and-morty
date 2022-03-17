@@ -4,8 +4,11 @@ import Album from '../components/Album'
 import Obtener from '../components/Obtener'
 import InformacionSerie from '../components/InformacionSerie'
 import Personajes from '../components/InformacionSerie/Personajes'
+import Ubicaciones from '../components/InformacionSerie/Ubicaciones'
+import Origenes from '../components/InformacionSerie/Origenes'
 import Personaje from '../components/Personaje'
 import Episodio from '../components/Episodio'
+import Ubicacion from '../components/InformacionSerie/Ubicacion'
 
 const routes = [
   {
@@ -32,6 +35,21 @@ const routes = [
     path: '/personajes',
     name: 'Personajes',
     component: Personajes
+  },
+  {
+    path: '/ubicaciones',
+    name: 'Ubicaciones',
+    component: Ubicaciones
+  },
+  {
+    path: '/ubicaciones/:id',
+    name: 'Ubicacion',
+    component: Ubicacion
+  },
+  {
+    path: '/origenes',
+    name: 'Origenes',
+    component: Origenes
   },
   {
     path: '/personajes/:id',

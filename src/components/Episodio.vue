@@ -23,8 +23,7 @@ export default {
   },
   methods: {
     async obtenerPersonaje() {
-      console.log(this.id)
-      axios 
+      await axios 
         .get(`https://rickandmortyapi.com/api/episode/${this.id}`)
         .then(res => {
           console.log(res.data)

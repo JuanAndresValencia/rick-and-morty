@@ -55,7 +55,6 @@ export default {
     generarSobres() {
       let currentSobres = localStorage.getItem('sobres')
       if (currentSobres) {
-        console.log('todavia hay sobres')
         let tempSobres = JSON.parse(localStorage.getItem('sobres'))
         this.sobres = this.sobres.concat(tempSobres)
       } else {
@@ -71,12 +70,11 @@ export default {
       if (this.blockCounter) {
         console.log('esta bloqueado')
       } else {
-        console.log('sobre abierto')
+        this.generarLaminas()
         this.activarContador()
         this.sobreAbierto = true
         this.blockCounter = true
         localStorage.setItem('bloqueado', true)
-        this.generarLaminas()
       }
     },
     activarContador(activar) {
@@ -122,7 +120,7 @@ export default {
         return false
       } 
     },
-    descartarLamina(lamina) {
+    async descartarLamina(lamina) {
       const laminas = JSON.parse(localStorage.getItem('sobreAbierto'))
       const laminasActualizadas = laminas.filter(lam => lam.data.url != lamina.url)
       localStorage.setItem('sobreAbierto', JSON.stringify(laminasActualizadas))
@@ -137,7 +135,6 @@ export default {
         this.blockCounter = false
       }
 
-      //Eliminar uno de los 4 sobres
       const allSobres = JSON.parse(localStorage.getItem('sobres'))
       allSobres.shift()
       localStorage.setItem('sobres', JSON.stringify(allSobres))
@@ -170,8 +167,8 @@ export default {
       await this.generarPersonajes(randomPersonajes)
       await this.generarEpisodio(randomEpisodio)
     },
-    generarPersonajes(data) {
-      axios 
+    async generarPersonajes(data) {
+      await axios 
         .get(`https://rickandmortyapi.com/api/character/${data}`)
         .then(res => {
           for (let i = 0; i < res.data.length; i++){
@@ -187,8 +184,8 @@ export default {
           console.log(err)
         })
     },
-    generarEpisodio(data) {
-      axios
+    async generarEpisodio(data) {
+      await axios
         .get(`https://rickandmortyapi.com/api/episode/${data}`)
         .then(res => {
           let result = {
@@ -196,13 +193,14 @@ export default {
             exists: this.buscarLamina(res.data)
           }
           this.laminas = this.laminas.concat(result)
-        })
+          localStorage.setItem('sobreAbierto', JSON.stringify(this.laminas))
+       })
         .catch(err => {
           console.log(err)
         })
     },
   },
-  created() {
+  mounted() {
     this.generarSobres()
 
     if (localStorage.getItem('sobreAbierto')) {
@@ -220,6 +218,7 @@ export default {
     }else {
       this.blockCounter = false
     }
+    
     this.reanudarContador()
     
   }
